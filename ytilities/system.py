@@ -5,6 +5,7 @@
  https://opensource.org/licenses/MIT
 """
 
+import os
 import sys
 from typing import Union
 
@@ -34,3 +35,14 @@ def trace_caller(return_trace: bool = False) -> Union[None, tuple]:
             return (trace_str, frame.f_code.co_name)
 
         print(trace_str)
+
+
+def importing_script():
+    # get working directory
+    dir = os.getcwd()
+    # get script path as passed to python
+    script = sys.argv[0]
+    # if path is not absolute, then join with current dir
+    importing_script = os.path.join(dir, script) if not os.path.isabs(script) else script
+
+    return importing_script
