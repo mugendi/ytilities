@@ -56,3 +56,22 @@ def pick(obj, keys: list, sort_keys: bool = True) -> Union[dict, list, tuple, se
     else:
         length = len(obj)
         return [obj[k] for k in keys if k <= length - 1]
+
+
+def unique_eq(l1: Union[list, tuple, set], l2: Union[list, tuple, set]) -> bool:
+    """Return True if all unique values in l1 are also in l2.
+
+    Raises:
+        TypeError: if values entered are not list, tuple or sets
+
+    Returns:
+        [type]: True if all unique values in l1 match unique values in l2
+    """
+
+    # Validate
+    if not isinstance(l1, (list, tuple, set)):
+        raise TypeError("Expects list, tuple or set, got", l1)
+    if not isinstance(l2, (list, tuple, set)):
+        raise TypeError("Expects list, tuple or set", l2)
+
+    return len(set(l1) - set(l2)) == 0

@@ -5,7 +5,7 @@
  https://opensource.org/licenses/MIT
 """
 
-from ytilities.misc import pick
+from ytilities.misc import pick, unique_eq
 
 
 class TestClass:
@@ -47,3 +47,9 @@ def test_pick():
     # key as str
     picked = pick(var, "c")
     assert picked == {"c": 3}
+
+
+def test_unique_eq():
+    assert unique_eq([1, 2, 5, 3, 4], [1, 2, 3, 4, 5])
+    assert unique_eq((1, 2, 5, 3, 4), (1, 2, 3, 4, 5))
+    assert unique_eq({1, 2, 5, 3, 4}, {1, 2, 3, 4, 5})
